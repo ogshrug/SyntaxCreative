@@ -80,7 +80,7 @@ export const useCart = create<CartStore>()(
       },
     }),
     {
-      name: 'grooves-cart',
+      name: 'spotify-cart',
     }
   )
 );

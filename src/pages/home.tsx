@@ -58,7 +58,7 @@ export default function Home() {
             className="text-7xl md:text-9xl font-extrabold mb-6 tracking-tight animate-on-scroll"
             style={{ fontWeight: 800, animationDelay: '100ms' }}
           >
-            GROOVES
+            SPOTIFY
           </h1>
           
           <p 
@@ -156,7 +156,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
-              The GROOVES Difference
+              The SPOTIFY Difference
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We obsess over every detail so you can focus on the music
@@ -265,10 +265,10 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Disc3 className="w-6 h-6 text-primary" />
-              <span className="font-bold text-lg">GROOVES</span>
+              <span className="font-bold text-lg">SPOTIFY</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2024 GROOVES. Every pressing matters.
+              © 2024 SPOTIFY. Every pressing matters.
             </p>
           </div>
         </div>

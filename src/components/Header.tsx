@@ -13,7 +13,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3 group" data-testid="link-brand">
           <Disc3 className="w-7 h-7 text-primary group-hover:rotate-180 transition-transform duration-700" />
           <span className="text-xl font-extrabold tracking-tight text-primary" style={{ fontWeight: 800 }}>
-            GROOVES
+            SPOTIFY
           </span>
         </Link>
 
