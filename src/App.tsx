@@ -10,13 +10,25 @@ import Cart from '@/pages/cart';
 import Mixtape from '@/pages/mixtape';
 import BurningMan from '@/pages/burning-man';
 import EscobarDJ from '@/pages/escobar-dj';
-import { Route, Switch, Router as WouterRouter } from 'wouter';
+import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient();
+
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+}
 
 function Router() {
   return (
     <>
+      <ScrollToTop />
       <Header />
       <Switch>
         <Route path="/" component={Home} />

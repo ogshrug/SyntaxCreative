@@ -29,7 +29,7 @@ export default function BurningMan() {
     if (!name.trim() || !email.trim()) {
       toast({
         title: 'Almost there',
-        description: 'Please enter your name and email to grab tickets.',
+        description: 'Please enter your name and postal address to grab tickets.',
         variant: 'destructive',
       });
       return;
@@ -152,12 +152,12 @@ export default function BurningMan() {
                   htmlFor="bm-email"
                   className="block text-sm text-muted-foreground mb-2"
                 >
-                  Email
+                  Postal Address
                 </label>
                 <input
                   id="bm-email"
-                  type="email"
-                  placeholder="Your email address"
+                  type="text"
+                  placeholder="Your postal address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-6 py-4 bg-muted border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"

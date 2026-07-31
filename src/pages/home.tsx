@@ -6,11 +6,14 @@ import { RecordCard } from '@/components/RecordCard';
 import { Footer } from '@/components/Footer';
 import { CRTLoadingScreen } from '@/components/CRTLoadingScreen';
 import { vinylRecords } from '@/data/records';
+import { useToast } from '@/hooks/use-toast';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+  const [postalAddress, setPostalAddress] = useState('');
   const [booting, setBooting] = useState(() => {
     try {
       return !sessionStorage.getItem('crt-shown');
@@ -46,6 +49,22 @@ export default function Home() {
   }, []);
 
   const featuredRecords = vinylRecords.slice(0, 4);
+
+  const handleSubscribe = () => {
+    if (!postalAddress.trim()) {
+      toast({
+        title: 'Add your postal address',
+        description: 'We need a postal address to send you the Spot Dropper mail.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    toast({
+      title: "You're on the list",
+      description: 'Welcome to the Spot Droppers. Look out for your first drop.',
+    });
+    setPostalAddress('');
+  };
 
   return (
     <div className="min-h-screen">
@@ -261,13 +280,16 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input 
-              type="email" 
-              placeholder="Your email address"
+              type="text" 
+              placeholder="Your postal address"
+              value={postalAddress}
+              onChange={(e) => setPostalAddress(e.target.value)}
               className="flex-1 px-6 py-4 bg-muted border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               data-testid="input-newsletter-email"
             />
             <Button 
               size="lg"
+              onClick={handleSubscribe}
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 rounded-sm"
               data-testid="button-subscribe"
             >
