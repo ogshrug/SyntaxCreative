@@ -241,7 +241,7 @@ export default function Home() {
       <section className="py-32 border-t border-border/40">
         <div className="container mx-auto px-6 max-w-3xl text-center animate-on-scroll">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
-            Join the Crate Diggers
+            Join the Spot Droppers
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
             Weekly drops, exclusive first looks, and stories behind the pressings

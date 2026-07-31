@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77c1e404-90d9-42f7-b030-b81ccbd4a8b0" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +91,7 @@
       <workItem from="1785433703094" duration="1532000" />
       <workItem from="1785435596953" duration="4187000" />
       <workItem from="1785510211292" duration="637000" />
-      <workItem from="1785512277787" duration="2911000" />
+      <workItem from="1785512277787" duration="3201000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
