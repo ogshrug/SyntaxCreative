@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'wouter';
-import { ShoppingCart, Disc3 } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 
 export function Header() {
@@ -11,7 +11,11 @@ export function Header() {
       <nav className="flex justify-between items-center px-6 max-w-[1200px] mx-auto w-full h-full">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group" data-testid="link-brand">
-          <Disc3 className="w-7 h-7 text-primary group-hover:rotate-180 transition-transform duration-700" />
+          <img
+            src="/spotlogo.svg"
+            alt="SPOTIFY logo"
+            className="w-8 h-8 group-hover:rotate-180 transition-transform duration-700"
+          />
           <span className="text-xl font-extrabold tracking-tight text-primary" style={{ fontWeight: 800 }}>
             SPOTIFY
           </span>

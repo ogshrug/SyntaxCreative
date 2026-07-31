@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { ArrowRight, Disc3, Award, Truck, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Award, Truck, ShieldCheck } from 'lucide-react';
 import heroBg from '/hero-bg.png';
 import { Button } from '@/components/ui/button';
 import { RecordCard } from '@/components/RecordCard';
@@ -51,7 +51,11 @@ export default function Home() {
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="inline-block mb-8 animate-on-scroll">
-            <Disc3 className="w-20 h-20 text-primary mx-auto mb-6" strokeWidth={1.5} />
+            <img
+              src="/spotlogo.svg"
+              alt="SPOTIFY logo"
+              className="w-20 h-20 mx-auto mb-6"
+            />
           </div>
           
           <h1 
@@ -168,12 +172,12 @@ export default function Home() {
               {
                 icon: Award,
                 title: 'Authenticated Pressings',
-                description: 'Every record verified by experts. We know every pressing date, mastering engineer, and label variant.',
+                description: 'Every record verified by Escobars. We know every pressing date, mastering engineer, and label variant.',
               },
               {
                 icon: ShieldCheck,
                 title: 'Condition Guaranteed',
-                description: 'Graded by Goldmine standards. What we say is what you get. No surprises, no disappointments.',
+                description: 'Graded by Escobar standards. What we say is what you get. No surprises, no disappointments.',
               },
               {
                 icon: Truck,
@@ -264,7 +268,11 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Disc3 className="w-6 h-6 text-primary" />
+              <img
+                src="/spotlogo.svg"
+                alt="SPOTIFY logo"
+                className="w-6 h-6"
+              />
               <span className="font-bold text-lg">SPOTIFY</span>
             </div>
             <p className="text-sm text-muted-foreground">
