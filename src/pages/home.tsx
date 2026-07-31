@@ -52,7 +52,7 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="inline-block mb-8 animate-on-scroll">
             <img
-              src="/spotlogo.svg"
+              src="/logo1.svg"
               alt="SPOTIFY logo"
               className="w-20 h-20 mx-auto mb-6"
             />
@@ -269,7 +269,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <img
-                src="/spotlogo.svg"
+                src="/logo1.svg"
                 alt="SPOTIFY logo"
                 className="w-6 h-6"
               />

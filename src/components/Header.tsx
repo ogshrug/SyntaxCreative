@@ -12,7 +12,7 @@ export function Header() {
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group" data-testid="link-brand">
           <img
-            src="/spotlogo.svg"
+            src="/logo1.svg"
             alt="SPOTIFY logo"
             className="w-8 h-8 group-hover:rotate-180 transition-transform duration-700"
           />

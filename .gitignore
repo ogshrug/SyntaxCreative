@@ -11,5 +11,5 @@ dist
 Thumbs.db
 
 # Large unused media
-public/spotify animated logo.*
+public/spotify animated logo*
 public/logo.ai
