@@ -1,9 +1,12 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'wouter';
 import type { VinylRecord } from '@/data/records';
+import { formatOptions, getMixtapeFormatPrice, type Format } from '@/data/records';
 import { useMixtape, MIXTAPE_PRICE_PER_SONG } from '@/hooks/use-mixtape';
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Trash2, Disc3 } from 'lucide-react';
+import { ArrowLeft, Trash2, Disc3, ShoppingCart } from 'lucide-react';
 
 interface TrackEntry {
   trackIndex: number;
@@ -17,6 +20,36 @@ interface AlbumGroup {
 
 export default function Mixtape() {
   const { songs, removeSong, clearMixtape, songCount, total } = useMixtape();
+  const { addItem } = useCart();
+  const { toast } = useToast();
+  const [format, setFormat] = useState<Format>('Vinyl');
+
+  const mediaPrice = getMixtapeFormatPrice(format);
+  const mixTotal = total + mediaPrice;
+
+  const orderedSongs = useMemo(() => {
+    return [...songs].sort((a, b) => a.trackIndex - b.trackIndex);
+  }, [songs]);
+
+  const handleOrderMix = () => {
+    const mixtapeRecord: VinylRecord = {
+      id: 0,
+      title: 'Your Mixtape',
+      artist: `${songCount} ${songCount === 1 ? 'song' : 'songs'} · Custom Mix`,
+      genre: 'Rock',
+      year: new Date().getFullYear(),
+      price: 0,
+      label: 'SPOTIFY Custom',
+      condition: 'Mint',
+      tracklist: orderedSongs.map((s) => s.trackName),
+      coverImage: '/logo1.svg',
+    };
+    addItem(mixtapeRecord, format, total + getMixtapeFormatPrice(format));
+    toast({
+      title: 'Mixtape added to cart',
+      description: `Your mix (${format}) · $${(total + getMixtapeFormatPrice(format)).toFixed(2)}`,
+    });
+  };
 
   const grouped = useMemo(() => {
     const map = new Map<number, AlbumGroup>();
@@ -146,16 +179,41 @@ export default function Mixtape() {
             <div className="sticky top-32 border border-border/40 rounded-sm p-6 bg-card/30 space-y-6">
               <h2 className="text-2xl font-bold">Order Your Own Mix</h2>
 
+              <div>
+                <span className="text-muted-foreground block mb-3">Format</span>
+                <div className="flex gap-3" data-testid="mixtape-format-selector">
+                  {formatOptions.map((option) => (
+                    <Button
+                      key={option}
+                      variant={format === option ? 'default' : 'outline'}
+                      onClick={() => setFormat(option)}
+                      className={
+                        format === option
+                          ? 'bg-primary hover:bg-primary/90 text-primary-foreground font-semibold'
+                          : 'border-border/40 text-foreground hover:border-primary hover:text-primary font-semibold'
+                      }
+                      data-testid={`button-mixtape-format-${option.toLowerCase()}`}
+                    >
+                      {option}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
               <div className="space-y-3 border-b border-border/40 pb-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Songs</span>
                   <span className="font-semibold" data-testid="text-song-count">
-                    {songCount}
+                    {songCount} × ${MIXTAPE_PRICE_PER_SONG.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Cost per song</span>
-                  <span className="font-semibold">${MIXTAPE_PRICE_PER_SONG.toFixed(2)}</span>
+                  <span className="text-muted-foreground">Songs total</span>
+                  <span className="font-semibold">${total.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">{format} media</span>
+                  <span className="font-semibold">${mediaPrice.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -166,15 +224,17 @@ export default function Mixtape() {
                   style={{ fontWeight: 800 }}
                   data-testid="text-mixtape-total"
                 >
-                  ${total.toFixed(2)}
+                  ${mixTotal.toFixed(2)}
                 </span>
               </div>
 
               <Button
                 size="lg"
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-sm"
+                onClick={handleOrderMix}
                 data-testid="button-order-mix"
               >
+                <ShoppingCart className="mr-2 w-5 h-5" />
                 Order Your Mix
               </Button>
 

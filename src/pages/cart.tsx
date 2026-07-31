@@ -56,14 +56,16 @@ export default function Cart() {
           <div className="lg:col-span-2 space-y-6">
             {items.map((item) => {
               const format: Format = item.format ?? 'Vinyl';
-              const price = getFormatPrice(item.record, format);
+              const isMixtape = item.unitPrice != null;
+              const unitPrice = item.unitPrice ?? getFormatPrice(item.record, format);
+              const detailHref = isMixtape ? '/mixtape' : `/record/${item.record.id}`;
               return (
               <div 
                 key={`${item.record.id}-${format}`}
                 className="flex gap-6 p-6 border border-border/40 rounded-sm bg-card/30 hover:border-primary/40 transition-colors"
                 data-testid={`cart-item-${item.record.id}`}
               >
-                <Link href={`/record/${item.record.id}`} className="shrink-0">
+                <Link href={detailHref} className="shrink-0">
                   <img 
                     src={item.record.coverImage}
                     alt={item.record.title}
@@ -73,7 +75,7 @@ export default function Cart() {
                 </Link>
                 
                 <div className="flex-1 min-w-0">
-                  <Link href={`/record/${item.record.id}`}>
+                  <Link href={detailHref}>
                     <h3 
                       className="font-bold text-lg mb-1 hover:text-primary transition-colors cursor-pointer line-clamp-1"
                       data-testid={`text-cart-title-${item.record.id}`}
@@ -140,10 +142,10 @@ export default function Cart() {
                     className="text-2xl font-bold text-secondary"
                     data-testid={`text-item-price-${item.record.id}`}
                   >
-                    ${(price * item.quantity).toFixed(2)}
+                    ${(unitPrice * item.quantity).toFixed(2)}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    ${price.toFixed(2)} each
+                    ${unitPrice.toFixed(2)} each
                   </p>
                 </div>
               </div>

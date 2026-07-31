@@ -7,11 +7,12 @@ interface CartItem {
   record: VinylRecord;
   format: Format;
   quantity: number;
+  unitPrice?: number;
 }
 
 interface CartStore {
   items: CartItem[];
-  addItem: (record: VinylRecord, format?: Format) => void;
+  addItem: (record: VinylRecord, format?: Format, unitPrice?: number) => void;
   removeItem: (recordId: number, format: Format) => void;
   updateQuantity: (recordId: number, format: Format, quantity: number) => void;
   clearCart: () => void;
@@ -20,7 +21,8 @@ interface CartStore {
 }
 
 function linePrice(item: CartItem) {
-  return getFormatPrice(item.record, item.format) * item.quantity;
+  const unitPrice = item.unitPrice ?? getFormatPrice(item.record, item.format);
+  return unitPrice * item.quantity;
 }
 
 export const useCart = create<CartStore>()(
@@ -30,7 +32,7 @@ export const useCart = create<CartStore>()(
       itemCount: 0,
       total: 0,
 
-      addItem: (record, format = 'Vinyl') => {
+      addItem: (record, format = 'Vinyl', unitPrice) => {
         const items = get().items;
         const existingItem = items.find(
           (item) => item.record.id === record.id && item.format === format,
@@ -40,12 +42,12 @@ export const useCart = create<CartStore>()(
           set({
             items: items.map((item) =>
               item.record.id === record.id && item.format === format
-                ? { ...item, quantity: item.quantity + 1 }
+                ? { ...item, quantity: item.quantity + 1, unitPrice: unitPrice ?? item.unitPrice }
                 : item,
             ),
           });
         } else {
-          set({ items: [...items, { record, format, quantity: 1 }] });
+          set({ items: [...items, { record, format, quantity: 1, unitPrice }] });
         }
 
         const newItems = get().items;
