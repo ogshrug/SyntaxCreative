@@ -284,6 +284,18 @@
   html {
     @apply bg-background;
   }
+
+  a,
+  button,
+  [role='button'],
+  select,
+  summary,
+  label[for],
+  input[type='checkbox'],
+  input[type='radio'],
+  [data-radix-collection-item] {
+    cursor: pointer;
+  }
 }
 
 @layer utilities {
