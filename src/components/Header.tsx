@@ -14,7 +14,7 @@ export function Header() {
           <img
             src="/logo1.svg"
             alt="SPOTIFY logo"
-            className="w-8 h-8 group-hover:rotate-180 transition-transform duration-700"
+            className="w-12 h-12 group-hover:rotate-180 transition-transform duration-700"
           />
           <span className="text-xl font-extrabold tracking-tight text-primary" style={{ fontWeight: 800 }}>
             SPOTIFY

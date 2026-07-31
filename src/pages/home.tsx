@@ -54,7 +54,7 @@ export default function Home() {
             <img
               src="/logo1.svg"
               alt="SPOTIFY logo"
-              className="w-20 h-20 mx-auto mb-6"
+              className="w-[7.5rem] h-[7.5rem] mx-auto mb-6"
             />
           </div>
           
@@ -271,7 +271,7 @@ export default function Home() {
               <img
                 src="/logo1.svg"
                 alt="SPOTIFY logo"
-                className="w-6 h-6"
+                className="w-9 h-9"
               />
               <span className="font-bold text-lg">SPOTIFY</span>
             </div>
