@@ -1843,7 +1843,7 @@ export const vinylRecords: VinylRecord[] = [
     price: 49.00,
     label: 'Jive',
     condition: 'Mint',
-    coverImage: '/albums/thebestalbum.jpeg',
+    coverImage: '/albums/thebestestalbum.png',
     description: 'The debut studio album by Britney Spears that launched her into global superstardom.',
     tracklist: [
       '...Baby One More Time',
