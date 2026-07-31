@@ -1,6 +1,8 @@
 import { Link } from 'wouter';
 import { useCart } from '@/hooks/use-cart';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { getFormatPrice, type Format } from '@/data/records';
 import { ArrowLeft, Trash2, Plus, Minus } from 'lucide-react';
 
 export default function Cart() {
@@ -52,9 +54,12 @@ export default function Cart() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-6">
-            {items.map((item) => (
+            {items.map((item) => {
+              const format: Format = item.format ?? 'Vinyl';
+              const price = getFormatPrice(item.record, format);
+              return (
               <div 
-                key={item.record.id}
+                key={`${item.record.id}-${format}`}
                 className="flex gap-6 p-6 border border-border/40 rounded-sm bg-card/30 hover:border-primary/40 transition-colors"
                 data-testid={`cart-item-${item.record.id}`}
               >
@@ -77,11 +82,17 @@ export default function Cart() {
                     </h3>
                   </Link>
                   <p 
-                    className="text-sm text-muted-foreground mb-3 line-clamp-1"
+                    className="text-sm text-muted-foreground mb-2 line-clamp-1"
                     data-testid={`text-cart-artist-${item.record.id}`}
                   >
                     {item.record.artist}
                   </p>
+                  <Badge
+                    variant="secondary"
+                    className="mb-3 bg-accent/20 text-accent-foreground border-accent/30"
+                  >
+                    {format}
+                  </Badge>
                   
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 border border-border/40 rounded-sm">
@@ -89,7 +100,7 @@ export default function Cart() {
                         variant="ghost"
                         size="sm"
                         className="h-8 w-8 p-0 hover:text-primary"
-                        onClick={() => updateQuantity(item.record.id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item.record.id, format, item.quantity - 1)}
                         data-testid={`button-decrease-${item.record.id}`}
                       >
                         <Minus className="w-4 h-4" />
@@ -104,7 +115,7 @@ export default function Cart() {
                         variant="ghost"
                         size="sm"
                         className="h-8 w-8 p-0 hover:text-primary"
-                        onClick={() => updateQuantity(item.record.id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.record.id, format, item.quantity + 1)}
                         data-testid={`button-increase-${item.record.id}`}
                       >
                         <Plus className="w-4 h-4" />
@@ -114,7 +125,7 @@ export default function Cart() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => removeItem(item.record.id)}
+                      onClick={() => removeItem(item.record.id, format)}
                       className="text-destructive hover:text-destructive hover:bg-destructive/10"
                       data-testid={`button-remove-${item.record.id}`}
                     >
@@ -129,14 +140,15 @@ export default function Cart() {
                     className="text-2xl font-bold text-secondary"
                     data-testid={`text-item-price-${item.record.id}`}
                   >
-                    ${(item.record.price * item.quantity).toFixed(2)}
+                    ${(price * item.quantity).toFixed(2)}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    ${item.record.price.toFixed(2)} each
+                    ${price.toFixed(2)} each
                   </p>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Order Summary */}

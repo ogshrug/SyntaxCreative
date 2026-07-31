@@ -1837,3 +1837,18 @@ export const vinylRecords: VinylRecord[] = [
 ];
 
 export const genres = ['All', 'Jazz', 'Soul', 'Electronic', 'Hip-Hop', 'Rock', 'Ambient'] as const;
+
+export type Format = 'Vinyl' | 'CD' | 'DVD';
+
+export const formatOptions: Format[] = ['Vinyl', 'CD', 'DVD'];
+
+export function getFormatPrice(record: VinylRecord, format: Format): number {
+  switch (format) {
+    case 'CD':
+      return 15;
+    case 'DVD':
+      return 12;
+    default:
+      return record.price;
+  }
+}

@@ -1,15 +1,19 @@
 import { useParams, Link } from 'wouter';
-import { vinylRecords } from '@/data/records';
+import { vinylRecords, formatOptions, getFormatPrice, type Format } from '@/data/records';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ShoppingCart, Package, Award } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Package, Award, Plus, Check } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
+import { useMixtape } from '@/hooks/use-mixtape';
 import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 
 export default function RecordDetail() {
   const params = useParams();
   const { addItem } = useCart();
+  const { addSong, songs } = useMixtape();
   const { toast } = useToast();
+  const [format, setFormat] = useState<Format>('Vinyl');
   
   const record = vinylRecords.find((r) => r.id === Number(params.id));
 
@@ -33,12 +37,26 @@ export default function RecordDetail() {
   }
 
   const handleAddToCart = () => {
-    addItem(record);
+    addItem(record, format);
     toast({
       title: 'Added to cart',
-      description: `${record.title} by ${record.artist}`,
+      description: `${record.title} by ${record.artist} (${format})`,
     });
   };
+
+  const handleAddToMixtape = (trackIndex: number) => {
+    const trackName = record.tracklist[trackIndex];
+    addSong({ record, trackIndex, trackName });
+    toast({
+      title: 'Added to mixtape',
+      description: `${trackName} — ${record.artist}`,
+    });
+  };
+
+  const isInMixtape = (trackIndex: number) =>
+    songs.some(
+      (s) => s.record.id === record.id && s.trackIndex === trackIndex,
+    );
 
   return (
     <div className="min-h-screen pt-32 pb-20">
@@ -106,7 +124,7 @@ export default function RecordDetail() {
             </div>
 
             {/* Price and CTA */}
-            <div className="border-t border-b border-border/40 py-6">
+            <div className="border-t border-b border-border/40 py-6 space-y-6">
               <div className="flex items-center justify-between mb-6">
                 <span className="text-muted-foreground">Price</span>
                 <span 
@@ -114,8 +132,29 @@ export default function RecordDetail() {
                   style={{ fontWeight: 800 }}
                   data-testid="text-price"
                 >
-                  ${record.price.toFixed(2)}
+                  ${getFormatPrice(record, format).toFixed(2)}
                 </span>
+              </div>
+
+              <div>
+                <span className="text-muted-foreground block mb-3">Format</span>
+                <div className="flex gap-3" data-testid="format-selector">
+                  {formatOptions.map((option) => (
+                    <Button
+                      key={option}
+                      variant={format === option ? 'default' : 'outline'}
+                      onClick={() => setFormat(option)}
+                      className={
+                        format === option
+                          ? 'bg-primary hover:bg-primary/90 text-primary-foreground font-semibold'
+                          : 'border-border/40 text-foreground hover:border-primary hover:text-primary font-semibold'
+                      }
+                      data-testid={`button-format-${option.toLowerCase()}`}
+                    >
+                      {option}
+                    </Button>
+                  ))}
+                </div>
               </div>
               
               <Button 
@@ -152,7 +191,7 @@ export default function RecordDetail() {
                   <span className="text-muted-foreground block mb-1">Format</span>
                   <span className="font-semibold flex items-center gap-2">
                     <Package className="w-4 h-4 text-primary" />
-                    12" Vinyl
+                    {format}
                   </span>
                 </div>
               </div>
@@ -160,20 +199,50 @@ export default function RecordDetail() {
 
             {/* Tracklist */}
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold">Tracklist</h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold">Tracklist</h2>
+                <Link href="/mixtape">
+                  <Button variant="ghost" size="sm" className="hover:text-primary">
+                    Your Mixtape
+                  </Button>
+                </Link>
+              </div>
               <ol className="space-y-2">
-                {record.tracklist.map((track, index) => (
-                  <li 
-                    key={index} 
-                    className="flex items-start gap-3 text-foreground/80"
-                    data-testid={`text-track-${index + 1}`}
-                  >
-                    <span className="text-muted-foreground font-mono text-sm min-w-[2rem]">
-                      {String(index + 1).padStart(2, '0')}.
-                    </span>
-                    <span>{track}</span>
-                  </li>
-                ))}
+                {record.tracklist.map((track, index) => {
+                  const added = isInMixtape(index);
+                  return (
+                    <li 
+                      key={index} 
+                      className="flex items-center gap-3 text-foreground/80"
+                      data-testid={`text-track-${index + 1}`}
+                    >
+                      <span className="text-muted-foreground font-mono text-sm min-w-[2rem]">
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <span className="flex-1">{track}</span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleAddToMixtape(index)}
+                        disabled={added}
+                        className="shrink-0 border-border/40 font-semibold disabled:opacity-100"
+                        data-testid={`button-add-track-${index + 1}`}
+                      >
+                        {added ? (
+                          <>
+                            <Check className="w-4 h-4 text-primary" />
+                            Added
+                          </>
+                        ) : (
+                          <>
+                            <Plus className="w-4 h-4" />
+                            Add
+                          </>
+                        )}
+                      </Button>
+                    </li>
+                  );
+                })}
               </ol>
             </div>
 

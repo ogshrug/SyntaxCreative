@@ -1,9 +1,11 @@
 import { Link, useLocation } from 'wouter';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
+import { useMixtape } from '@/hooks/use-mixtape';
 
 export function Header() {
   const { itemCount } = useCart();
+  const { songCount } = useMixtape();
   const [location] = useLocation();
 
   return (
@@ -55,6 +57,25 @@ export function Header() {
             data-testid="link-escobar-dj"
           >
             Escobar DJ
+          </Link>
+          <Link
+            href="/mixtape"
+            className={`relative text-sm font-bold tracking-wide transition-colors ${
+              location === '/mixtape'
+                ? 'text-primary border-b-2 border-primary pb-0.5'
+                : 'text-foreground/60 hover:text-foreground'
+            }`}
+            data-testid="link-mixtape"
+          >
+            Mixtape
+            {songCount > 0 && (
+              <span
+                className="absolute -top-1.5 -right-4 bg-primary text-primary-foreground text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center"
+                data-testid="text-mixtape-count"
+              >
+                {songCount}
+              </span>
+            )}
           </Link>
           <Link
             href="/cart"
