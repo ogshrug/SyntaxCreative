@@ -4,12 +4,28 @@ import { ArrowRight, Award, Truck, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { RecordCard } from '@/components/RecordCard';
 import { Footer } from '@/components/Footer';
+import { CRTLoadingScreen } from '@/components/CRTLoadingScreen';
 import { vinylRecords } from '@/data/records';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const [booting, setBooting] = useState(() => {
+    try {
+      return !sessionStorage.getItem('crt-shown');
+    } catch {
+      return true;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('crt-shown', '1');
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,6 +49,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {booting && <CRTLoadingScreen onDone={() => setBooting(false)} />}
       {/* Hero Section */}
       <section 
         ref={heroRef}

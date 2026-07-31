@@ -22,14 +22,13 @@ export default function EscobarDJ() {
 
   return (
     <div className="min-h-screen pt-32">
-      {/* Section 1: Sample Image */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
             <div className="relative aspect-square overflow-hidden rounded-sm bg-muted">
               <img
                 src="/escobar.jpg"
-                alt="Escobar DJ sample"
+                alt="Escobar DJ"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
