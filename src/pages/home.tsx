@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { ArrowRight, Award, Truck, ShieldCheck } from 'lucide-react';
-import heroBg from '/hero-bg.png';
+
 import { Button } from '@/components/ui/button';
 import { RecordCard } from '@/components/RecordCard';
 import { vinylRecords } from '@/data/records';
@@ -40,7 +40,7 @@ export default function Home() {
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroBg}
+            src="/hero-bg.png"
             alt=""
             className="w-full h-full object-cover opacity-50"
           />
