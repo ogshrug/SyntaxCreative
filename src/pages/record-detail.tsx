@@ -60,8 +60,8 @@ export default function RecordDetail() {
     );
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen pt-32 flex flex-col">
+      <div className="container mx-auto px-6 flex-1 w-full pb-20">
         {/* Back Button */}
         <Link href="/shop">
           <Button 
