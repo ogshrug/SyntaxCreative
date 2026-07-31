@@ -95,9 +95,9 @@ export default function BurningMan() {
             BURNING MAN
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            The playa is calling. Tickets are limited —
+            The playa is calling. Tickets are limited.
             <br />
-            grab yours before the gates close.
+            Grab yours before the gates close.
           </p>
           <Button
             size="lg"
