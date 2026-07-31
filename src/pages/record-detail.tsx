@@ -2,6 +2,7 @@ import { useParams, Link } from 'wouter';
 import { vinylRecords, formatOptions, getFormatPrice, type Format } from '@/data/records';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Footer } from '@/components/Footer';
 import { ArrowLeft, ShoppingCart, Package, Award, Plus, Check } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { useMixtape } from '@/hooks/use-mixtape';
@@ -259,6 +260,8 @@ export default function RecordDetail() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

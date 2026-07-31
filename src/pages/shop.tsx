@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { RecordCard } from '@/components/RecordCard';
 import { vinylRecords, genres } from '@/data/records';
 import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/Footer';
 
 export default function Shop() {
   const [selectedGenre, setSelectedGenre] = useState<string>('All');
@@ -14,8 +15,8 @@ export default function Shop() {
   }, [selectedGenre]);
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen pt-32 flex flex-col">
+      <div className="container mx-auto px-6 flex-1 w-full pb-20">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
@@ -62,6 +63,8 @@ export default function Shop() {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 }

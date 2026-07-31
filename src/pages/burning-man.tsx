@@ -4,6 +4,7 @@ import type { Format } from '@/data/records';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/Footer';
 import { ArrowDown, ShoppingCart, Minus, Plus, Flame } from 'lucide-react';
 
 const TIERS = [
@@ -245,6 +246,8 @@ export default function BurningMan() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

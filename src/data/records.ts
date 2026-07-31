@@ -1834,6 +1834,34 @@ export const vinylRecords: VinylRecord[] = [
       'Wild in the Streets',
     ]
   },
+  {
+    id: 76,
+    title: '...Baby One More Time',
+    artist: 'Britney Spears',
+    genre: 'Soul',
+    year: 1999,
+    price: 49.00,
+    label: 'Jive',
+    condition: 'Mint',
+    coverImage: '/albums/thebestalbum.jpeg',
+    description: 'The debut studio album by Britney Spears that launched her into global superstardom.',
+    tracklist: [
+      '...Baby One More Time',
+      '(You Drive Me) Crazy',
+      'Sometimes',
+      'Soda Pop',
+      'Born to Make You Happy',
+      'From the Bottom of My Broken Heart',
+      'I Will Be There',
+      'I Will Still Love You (with Don Philip)',
+      'Thinkin\' About You',
+      'E-mail My Heart',
+      'The Beat Goes On',
+      'I\'ll Never Stop Loving You',
+      'Deep in My Heart',
+      '(I Can\'t Get No) Satisfaction',
+    ]
+  },
 ];
 
 export const genres = ['All', 'Jazz', 'Soul', 'Electronic', 'Hip-Hop', 'Rock', 'Ambient'] as const;

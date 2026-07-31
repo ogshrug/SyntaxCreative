@@ -2,6 +2,7 @@ import { Link } from 'wouter';
 import { useCart } from '@/hooks/use-cart';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Footer } from '@/components/Footer';
 import { getFormatPrice, type Format } from '@/data/records';
 import { ArrowLeft, Trash2, Plus, Minus } from 'lucide-react';
 
@@ -10,8 +11,8 @@ export default function Cart() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen pt-32 pb-20">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <div className="min-h-screen pt-32 flex flex-col">
+        <div className="container mx-auto px-6 max-w-4xl flex-1 w-full pb-20">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-8" style={{ fontWeight: 800 }}>
             Your Cart
           </h1>
@@ -30,13 +31,15 @@ export default function Cart() {
             </Link>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <div className="min-h-screen pt-32 flex flex-col">
+      <div className="container mx-auto px-6 max-w-6xl flex-1 w-full pb-20">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-5xl md:text-6xl font-extrabold" style={{ fontWeight: 800 }}>
             Your Cart
@@ -211,6 +214,8 @@ export default function Cart() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useMixtape, MIXTAPE_PRICE_PER_SONG } from '@/hooks/use-mixtape';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/Footer';
 import { ArrowLeft, Trash2, Disc3, ShoppingCart } from 'lucide-react';
 
 interface TrackEntry {
@@ -72,8 +73,8 @@ export default function Mixtape() {
 
   if (songs.length === 0) {
     return (
-      <div className="min-h-screen pt-32 pb-20">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <div className="min-h-screen pt-32 flex flex-col">
+        <div className="container mx-auto px-6 max-w-4xl flex-1 w-full pb-20">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-8" style={{ fontWeight: 800 }}>
             Your Mixtape
           </h1>
@@ -95,13 +96,15 @@ export default function Mixtape() {
             </Link>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <div className="min-h-screen pt-32 flex flex-col">
+      <div className="container mx-auto px-6 max-w-6xl flex-1 w-full pb-20">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-5xl md:text-6xl font-extrabold" style={{ fontWeight: 800 }}>
             Your Mixtape
@@ -253,6 +256,8 @@ export default function Mixtape() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
