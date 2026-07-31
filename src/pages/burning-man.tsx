@@ -184,7 +184,7 @@ export default function BurningMan() {
                     }
                     data-testid={`button-tier-${t.id}`}
                   >
-                    {t.name} — ${t.price}
+                    {t.name} - ${t.price}
                   </Button>
                 ))}
               </div>

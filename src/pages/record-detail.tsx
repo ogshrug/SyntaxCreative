@@ -50,7 +50,7 @@ export default function RecordDetail() {
     addSong({ record, trackIndex, trackName });
     toast({
       title: 'Added to mixtape',
-      description: `${trackName} — ${record.artist}`,
+      description: `${trackName} - ${record.artist}`,
     });
   };
 
