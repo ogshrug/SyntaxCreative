@@ -156,10 +156,10 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section ref={featuresRef} className="py-32 bg-card/30">
+      <section ref={featuresRef} className="py-32">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight" style={{ fontWeight: 800 }}>
               The SPOTIFY Difference
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -193,7 +193,7 @@ export default function Home() {
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                   <feature.icon className="w-10 h-10" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+                <h3 className="text-2xl font-bold mb-3 leading-snug">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
