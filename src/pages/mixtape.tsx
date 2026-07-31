@@ -44,7 +44,7 @@ export default function Mixtape() {
       tracklist: orderedSongs.map((s) => s.trackName),
       coverImage: '/logo1.svg',
     };
-    addItem(mixtapeRecord, format, total + getMixtapeFormatPrice(format));
+    addItem(mixtapeRecord, format, total + getMixtapeFormatPrice(format), 'mixtape');
     toast({
       title: 'Mixtape added to cart',
       description: `Your mix (${format}) · $${(total + getMixtapeFormatPrice(format)).toFixed(2)}`,

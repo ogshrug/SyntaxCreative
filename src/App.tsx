@@ -8,6 +8,7 @@ import Shop from '@/pages/shop';
 import RecordDetail from '@/pages/record-detail';
 import Cart from '@/pages/cart';
 import Mixtape from '@/pages/mixtape';
+import BurningMan from '@/pages/burning-man';
 import EscobarDJ from '@/pages/escobar-dj';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/record/:id" component={RecordDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/mixtape" component={Mixtape} />
+        <Route path="/burning-man" component={BurningMan} />
         <Route path="/escobar-dj" component={EscobarDJ} />
         <Route component={NotFound} />
       </Switch>

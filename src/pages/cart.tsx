@@ -56,9 +56,15 @@ export default function Cart() {
           <div className="lg:col-span-2 space-y-6">
             {items.map((item) => {
               const format: Format = item.format ?? 'Vinyl';
-              const isMixtape = item.unitPrice != null;
+              const isMixtape = item.kind === 'mixtape';
+              const isTicket = item.kind === 'ticket';
               const unitPrice = item.unitPrice ?? getFormatPrice(item.record, format);
-              const detailHref = isMixtape ? '/mixtape' : `/record/${item.record.id}`;
+              const detailHref = isMixtape
+                ? '/mixtape'
+                : isTicket
+                  ? '/burning-man'
+                  : `/record/${item.record.id}`;
+              const badgeLabel = item.formatLabel ?? format;
               return (
               <div 
                 key={`${item.record.id}-${format}`}
@@ -93,7 +99,7 @@ export default function Cart() {
                     variant="secondary"
                     className="mb-3 bg-accent/20 text-accent-foreground border-accent/30"
                   >
-                    {format}
+                    {badgeLabel}
                   </Badge>
                   
                   <div className="flex items-center gap-3">

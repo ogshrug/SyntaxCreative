@@ -221,36 +221,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Genre Spotlight */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
-              Explore by Genre
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From bebop to breakbeats, we dig deep
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {['Jazz', 'Soul', 'Electronic', 'Hip-Hop', 'Rock', 'Ambient'].map((genre, index) => (
-              <Link 
-                key={genre} 
-                href={`/shop?genre=${genre}`}
-              >
-                <div 
-                  className="p-8 border border-border/40 rounded-sm hover:border-primary hover:bg-primary/5 transition-all duration-300 text-center group cursor-pointer animate-on-scroll"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                  data-testid={`button-genre-${genre.toLowerCase()}`}
-                >
-                  <h3 className="font-bold text-lg group-hover:text-primary transition-colors">
-                    {genre}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* Burning Man CTA */}
+      <section className="py-32 border-y border-border/40 bg-card/30 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/herobrun.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        </div>
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
+            Burning Man is Here
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
+            The playa is calling. Secure your spot at this year's burn and start planning your journey.
+          </p>
+          <Link href="/burning-man">
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base px-8 py-6 rounded-sm"
+              data-testid="button-burning-man-signup"
+            >
+              Sign Up Now!!
+            </Button>
+          </Link>
         </div>
       </section>
 
