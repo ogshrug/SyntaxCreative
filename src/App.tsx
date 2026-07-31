@@ -7,6 +7,7 @@ import Home from '@/pages/home';
 import Shop from '@/pages/shop';
 import RecordDetail from '@/pages/record-detail';
 import Cart from '@/pages/cart';
+import EscobarDJ from '@/pages/escobar-dj';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/shop" component={Shop} />
         <Route path="/record/:id" component={RecordDetail} />
         <Route path="/cart" component={Cart} />
+        <Route path="/escobar-dj" component={EscobarDJ} />
         <Route component={NotFound} />
       </Switch>
     </>

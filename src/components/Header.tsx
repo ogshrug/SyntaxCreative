@@ -46,6 +46,17 @@ export function Header() {
             Shop
           </Link>
           <Link
+            href="/escobar-dj"
+            className={`text-sm font-bold tracking-wide transition-colors ${
+              location === '/escobar-dj'
+                ? 'text-primary border-b-2 border-primary pb-0.5'
+                : 'text-foreground/60 hover:text-foreground'
+            }`}
+            data-testid="link-escobar-dj"
+          >
+            Escobar DJ
+          </Link>
+          <Link
             href="/cart"
             className="relative p-2 hover:bg-white/5 rounded-lg transition-colors"
             data-testid="link-cart"
