@@ -13,3 +13,7 @@ Thumbs.db
 # Large unused media
 public/spotify animated logo*
 public/logo.ai
+
+# IDE
+.idea/
+.vscode/
