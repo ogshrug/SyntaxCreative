@@ -3,6 +3,8 @@ import { Link, useLocation } from 'wouter';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { useMixtape } from '@/hooks/use-mixtape';
+import { CrtToggle } from '@/components/CrtToggle';
+import { NowPlayingTicker } from '@/components/NowPlayingTicker';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home', testId: 'link-home' },
@@ -12,7 +14,13 @@ const NAV_LINKS = [
   { href: '/burning-man', label: 'Burning Man', testId: 'link-burning-man' },
 ];
 
-export function Header() {
+export function Header({
+  crtEnabled,
+  onToggleCrt,
+}: {
+  crtEnabled: boolean;
+  onToggleCrt: () => void;
+}) {
   const { itemCount } = useCart();
   const { songCount } = useMixtape();
   const [location] = useLocation();
@@ -79,6 +87,7 @@ export function Header() {
               </span>
             )}
           </Link>
+          <CrtToggle enabled={crtEnabled} onToggle={onToggleCrt} />
         </div>
 
         {/* Mobile controls */}
@@ -98,6 +107,7 @@ export function Header() {
               </span>
             )}
           </Link>
+          <CrtToggle enabled={crtEnabled} onToggle={onToggleCrt} />
           <button
             onClick={() => setOpen((prev) => !prev)}
             className="p-2 hover:bg-white/5 rounded-lg transition-colors"
@@ -142,6 +152,7 @@ export function Header() {
           </div>
         </div>
       )}
+      <NowPlayingTicker />
     </header>
   );
 }

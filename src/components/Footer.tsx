@@ -12,7 +12,7 @@ export function Footer() {
             <span className="font-bold text-lg">SPOTIFY</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            © 2024 SPOTIFY. The revolution of music
+            © 1985 SPOTIFY. The revolution of music
           </p>
         </div>
       </div>

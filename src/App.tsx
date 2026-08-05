@@ -12,6 +12,8 @@ import BurningMan from '@/pages/burning-man';
 import EscobarDJ from '@/pages/escobar-dj';
 import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { useEffect } from 'react';
+import { CrtFilter } from '@/components/CrtFilter';
+import { useCrtFilter } from '@/hooks/use-crt';
 
 const queryClient = new QueryClient();
 
@@ -25,11 +27,17 @@ function ScrollToTop() {
   return null;
 }
 
-function Router() {
+function Router({
+  crtEnabled,
+  onToggleCrt,
+}: {
+  crtEnabled: boolean;
+  onToggleCrt: () => void;
+}) {
   return (
     <>
       <ScrollToTop />
-      <Header />
+      <Header crtEnabled={crtEnabled} onToggleCrt={onToggleCrt} />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/shop" component={Shop} />
@@ -45,12 +53,15 @@ function Router() {
 }
 
 function App() {
+  const { enabled: crtEnabled, toggle: toggleCrt } = useCrtFilter();
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
+          <Router crtEnabled={crtEnabled} onToggleCrt={toggleCrt} />
         </WouterRouter>
+        <CrtFilter enabled={crtEnabled} />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

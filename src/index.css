@@ -81,6 +81,8 @@
   --font-display: var(--app-font-display);
   --font-serif: var(--app-font-serif);
   --font-mono: var(--app-font-mono);
+  --font-retro: 'Press Start 2P', 'Courier New', monospace;
+  --font-terminal: 'VT323', 'Courier New', monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -539,6 +541,305 @@
     }
     to {
       width: 100%;
+    }
+  }
+
+  /* ---- Persistent CRT filter ---- */
+  .crt-filter {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  .crt-filter-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.32) 0px,
+      rgba(0, 0, 0, 0.32) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  .crt-filter-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  .crt-filter-tint {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(61, 203, 108, 0.06) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+
+  .crt-filter-flicker {
+    animation: crtFilterFlicker 0.18s steps(2, end) infinite;
+  }
+
+  @keyframes crtFilterFlicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.97;
+    }
+  }
+
+  .crt-filter-sweep {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(87, 255, 133, 0.08) 45%,
+      rgba(255, 255, 255, 0.07) 50%,
+      rgba(87, 255, 133, 0.08) 55%,
+      transparent
+    );
+    height: 160px;
+    animation: crtFilterSweep 7s linear infinite;
+  }
+
+  @keyframes crtFilterSweep {
+    0% {
+      transform: translateY(-160px);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  /* ---- CRT toggle icon ---- */
+  .crt-toggle-screen {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .crt-toggle-led {
+    fill: rgba(130, 130, 130, 0.9);
+    transition:
+      fill 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  [aria-pressed='true'] .crt-toggle-led {
+    fill: #3dcb6c;
+    filter: drop-shadow(0 0 3px rgba(61, 203, 108, 0.9));
+  }
+
+  [aria-pressed='true'] .crt-toggle-screen {
+    box-shadow: inset 0 0 10px rgba(61, 203, 108, 0.45);
+  }
+
+  /* ---- CRT filter dot mask (aperture grille) ---- */
+  .crt-filter-dotmask {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.14) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+
+  /* ---- CRT filter VHS static noise ---- */
+  .crt-filter-noise {
+    position: absolute;
+    inset: -32px;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    mix-blend-mode: overlay;
+    animation: crtNoise 0.4s steps(4, end) infinite;
+  }
+
+  @keyframes crtNoise {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-8px, 4px);
+    }
+    50% {
+      transform: translate(6px, -6px);
+    }
+    75% {
+      transform: translate(-4px, 8px);
+    }
+    100% {
+      transform: translate(8px, -2px);
+    }
+  }
+
+  /* ---- Blinking cursor ---- */
+  .crt-cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.15em;
+    background: currentColor;
+    vertical-align: -0.1em;
+    animation: crtBlink 1.1s steps(1, end) infinite;
+  }
+
+  @keyframes crtBlink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* ---- Glitch hover ---- */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .glitch:hover::before,
+  .glitch:hover::after {
+    opacity: 0.75;
+  }
+
+  .glitch:hover::before {
+    color: hsl(var(--primary));
+    clip-path: inset(0 0 60% 0);
+    animation: glitchShiftA 0.35s steps(2, end) infinite;
+  }
+
+  .glitch:hover::after {
+    color: hsl(var(--accent));
+    clip-path: inset(60% 0 0 0);
+    animation: glitchShiftB 0.45s steps(2, end) infinite;
+  }
+
+  @keyframes glitchShiftA {
+    0%,
+    100% {
+      transform: translate(0);
+    }
+    25% {
+      transform: translate(-3px, 1px);
+    }
+    50% {
+      transform: translate(2px, -1px);
+    }
+    75% {
+      transform: translate(-2px, 2px);
+    }
+  }
+
+  @keyframes glitchShiftB {
+    0%,
+    100% {
+      transform: translate(0);
+    }
+    25% {
+      transform: translate(3px, -1px);
+    }
+    50% {
+      transform: translate(-2px, 1px);
+    }
+    75% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  /* ---- Marquee ticker ---- */
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
+    animation: marqueeScroll 160s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes marqueeScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ---- Outlined chrome text ---- */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.35);
+  }
+
+  /* ---- Retro badge ---- */
+  .badge-retro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid hsl(var(--primary));
+    outline: 1px solid hsl(var(--primary));
+    outline-offset: 2px;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-terminal);
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+  }
+
+  /* ---- Checkerboard strip ---- */
+  .checkerboard {
+    height: 0.5rem;
+    background-image: conic-gradient(
+      hsl(var(--primary) / 0.45) 25%,
+      transparent 25% 50%,
+      hsl(var(--primary) / 0.45) 50% 75%,
+      transparent 75%
+    );
+    background-size: 0.5rem 0.5rem;
+  }
+
+  /* ---- Memphis squiggle divider ---- */
+  .squiggle {
+    width: 7rem;
+    height: 1rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='16' viewBox='0 0 112 16'%3E%3Cpath d='M0 8 Q7 0 14 8 T28 8 T42 8 T56 8 T70 8 T84 8 T98 8 T112 8' fill='none' stroke='%233DCB6C' stroke-width='2'/%3E%3C/svg%3E")
+      no-repeat center / contain;
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .crt-filter-noise,
+    .crt-cursor,
+    .glitch:hover::before,
+    .glitch:hover::after {
+      animation: none !important;
     }
   }
 }

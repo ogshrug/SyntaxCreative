@@ -96,7 +96,8 @@ export default function Home() {
           </div>
           
           <h1 
-            className="text-7xl md:text-9xl font-extrabold mb-6 tracking-tight animate-on-scroll"
+            className="glitch text-7xl md:text-9xl font-extrabold mb-6 tracking-tight animate-on-scroll"
+            data-text="SPOTIFY"
             style={{ fontWeight: 800, animationDelay: '100ms' }}
           >
             SPOTIFY
@@ -108,7 +109,7 @@ export default function Home() {
           >
             Curated vinyl for audiophiles who treat records as art objects.
             <br />
-            Every pressing tells a story.
+            Every pressing tells a story.<span className="crt-cursor" aria-hidden="true" />
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll" style={{ animationDelay: '300ms' }}>
@@ -127,6 +128,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
+      <div className="checkerboard" aria-hidden="true" />
       <section className="py-20 border-y border-border/40 bg-card/30">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -154,15 +156,26 @@ export default function Home() {
       </section>
 
       {/* Featured Records */}
-      <section className="py-32">
+      <section className="py-32 relative overflow-hidden">
+        <div
+          className="text-outline pointer-events-none select-none absolute top-8 left-1/2 -translate-x-1/2 text-[8rem] md:text-[15rem] font-extrabold whitespace-nowrap opacity-40"
+          aria-hidden="true"
+          style={{ fontWeight: 800 }}
+        >
+          VINYL
+        </div>
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">
+            <div className="badge-retro mb-6" data-testid="badge-retro-featured">
+              New Arrivals
+            </div>
             <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
               Featured Arrivals
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Hand-selected gems from legendary labels and underground pressings
             </p>
+            <div className="squiggle mx-auto mt-6" aria-hidden="true" />
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -196,12 +209,16 @@ export default function Home() {
       <section ref={featuresRef} className="py-32">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">
+            <div className="badge-retro mb-6" data-testid="badge-retro-difference">
+              Why Us
+            </div>
             <h2 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight" style={{ fontWeight: 800 }}>
               The SPOTIFY Difference
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We obsess over every detail so you can focus on the music
             </p>
+            <div className="squiggle mx-auto mt-6" aria-hidden="true" />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
