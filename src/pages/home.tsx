@@ -139,9 +139,9 @@ export default function Home() {
       </section>
 
       {/* Featured Records */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative isolate overflow-hidden">
         <div
-          className="text-outline pointer-events-none select-none absolute top-8 left-1/2 -translate-x-1/2 text-[8rem] md:text-[15rem] font-extrabold whitespace-nowrap opacity-40"
+          className="text-outline -z-10 pointer-events-none select-none absolute top-8 left-1/2 -translate-x-1/2 text-[8rem] md:text-[15rem] font-extrabold whitespace-nowrap"
           aria-hidden="true"
           style={{ fontWeight: 800 }}
         >
