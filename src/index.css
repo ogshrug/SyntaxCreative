@@ -833,6 +833,31 @@
     opacity: 0.6;
   }
 
+  /* ---- Classic yellow price sticker ---- */
+  .price-sticker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.25rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 30% 25%,
+      #fff3b0,
+      #ffd92e 70%
+    );
+    border: 1px solid #d9a800;
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    color: #000;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+    transform: rotate(-8deg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .marquee-track,
     .crt-filter-noise,
