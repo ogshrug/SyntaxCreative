@@ -773,6 +773,13 @@
   }
 
   .marquee-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marqueeScroll 90s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-track {
     display: inline-flex;
     align-items: center;
     gap: 3rem;

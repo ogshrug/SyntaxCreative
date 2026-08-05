@@ -4,7 +4,6 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { useMixtape } from '@/hooks/use-mixtape';
 import { CrtToggle } from '@/components/CrtToggle';
-import { NowPlayingTicker } from '@/components/NowPlayingTicker';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home', testId: 'link-home' },
@@ -152,7 +151,6 @@ export function Header({
           </div>
         </div>
       )}
-      <NowPlayingTicker />
     </header>
   );
 }

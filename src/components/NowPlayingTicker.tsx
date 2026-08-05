@@ -3,6 +3,7 @@ import { vinylRecords } from '@/data/records';
 export function NowPlayingTicker() {
   const items = vinylRecords.map((record) => `${record.title} — ${record.artist}`);
   const line = ['NOW PLAYING', ...items].join('  •  ');
+  const copy = `${line}  •  `;
 
   return (
     <div
@@ -11,8 +12,8 @@ export function NowPlayingTicker() {
       aria-hidden="true"
     >
       <div className="marquee-track py-1 font-terminal text-sm tracking-wide text-muted-foreground/80">
-        <span>{line}</span>
-        <span>{line}</span>
+        <span>{copy}</span>
+        <span>{copy}</span>
       </div>
     </div>
   );

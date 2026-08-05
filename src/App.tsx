@@ -14,6 +14,7 @@ import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { useEffect, useState } from 'react';
 import { CrtFilter } from '@/components/CrtFilter';
 import { CRTLoadingScreen } from '@/components/CRTLoadingScreen';
+import { NowPlayingTicker } from '@/components/NowPlayingTicker';
 import { useCrtFilter } from '@/hooks/use-crt';
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ function Router({
     <>
       <ScrollToTop />
       <Header crtEnabled={crtEnabled} onToggleCrt={onToggleCrt} />
+      <NowPlayingTicker />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/shop" component={Shop} />
