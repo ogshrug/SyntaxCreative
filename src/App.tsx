@@ -11,8 +11,9 @@ import Mixtape from '@/pages/mixtape';
 import BurningMan from '@/pages/burning-man';
 import EscobarDJ from '@/pages/escobar-dj';
 import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CrtFilter } from '@/components/CrtFilter';
+import { CRTLoadingScreen } from '@/components/CRTLoadingScreen';
 import { useCrtFilter } from '@/hooks/use-crt';
 
 const queryClient = new QueryClient();
@@ -54,6 +55,21 @@ function Router({
 
 function App() {
   const { enabled: crtEnabled, toggle: toggleCrt } = useCrtFilter();
+  const [booting, setBooting] = useState(() => {
+    try {
+      return !sessionStorage.getItem('crt-shown');
+    } catch {
+      return true;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('crt-shown', '1');
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -61,7 +77,8 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <Router crtEnabled={crtEnabled} onToggleCrt={toggleCrt} />
         </WouterRouter>
-        <CrtFilter enabled={crtEnabled} />
+        {booting && <CRTLoadingScreen onDone={() => setBooting(false)} />}
+        <CrtFilter enabled={crtEnabled && !booting} />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
