@@ -84,10 +84,21 @@
   --font-retro: 'Press Start 2P', 'Courier New', monospace;
   --font-terminal: 'VT323', 'Courier New', monospace;
 
+  --text-fluid-hero: clamp(4.5rem, 10vw, 9rem);
+  --text-fluid-display: clamp(3rem, 5vw, 4.5rem);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ---- Consistent page shell (matches the 1200px header) ---- */
+@utility container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
 /* DARK MODE (primary theme) */
@@ -729,7 +740,7 @@
   /* ---- Outlined chrome text ---- */
   .text-outline {
     color: transparent;
-    -webkit-text-stroke: 2px hsl(var(--foreground) / 0.55);
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.1);
   }
 
   /* ---- Retro badge ---- */
@@ -801,5 +812,78 @@
     .glitch:hover::after {
       animation: none !important;
     }
+
+    .checkout-logo,
+    .checkout-expand {
+      animation: none !important;
+    }
+
+    .confetti-piece {
+      display: none !important;
+    }
+  }
+
+  /* ---- Checkout flow ---- */
+  .checkout-logo,
+  .checkout-expand {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .checkout-logo {
+    animation: checkoutLogo 1.4s ease-in-out forwards;
+  }
+
+  @keyframes checkoutLogo {
+    0% {
+      transform: scale(0.15) rotate(0deg);
+      opacity: 0;
+    }
+    45% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.15) rotate(360deg);
+      opacity: 1;
+    }
+  }
+
+  .checkout-expand {
+    animation: checkoutExpand 0.9s ease-in forwards;
+  }
+
+  @keyframes checkoutExpand {
+    0% {
+      transform: scale(1.15) rotate(360deg);
+      opacity: 1;
+      filter: brightness(1);
+    }
+    100% {
+      transform: scale(18) rotate(360deg);
+      opacity: 1;
+      filter: brightness(0);
+    }
+  }
+
+  .confetti-piece {
+    position: absolute;
+    top: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(-10vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(720deg);
+      opacity: 1;
+    }
+  }
+
+  .checkout-success-in {
+    animation: fadeIn 0.6s ease-out 0.3s both;
   }
 }

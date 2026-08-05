@@ -6,7 +6,7 @@ import { RecordCard } from '@/components/RecordCard';
 import { Footer } from '@/components/Footer';
 import { vinylRecords } from '@/data/records';
 import { useToast } from '@/hooks/use-toast';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -14,25 +14,7 @@ export default function Home() {
   const { toast } = useToast();
   const [postalAddress, setPostalAddress] = useState('');
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const featuredRecords = vinylRecords.slice(0, 4);
+  const featuredRecords = vinylRecords.filter((r) => !r.exclusive).slice(0, 4);
 
   const handleSubscribe = () => {
     if (!postalAddress.trim()) {
@@ -70,7 +52,7 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="inline-block mb-8 animate-on-scroll">
+          <div className="inline-block mb-8">
             <img
               src="/logo1.svg"
               alt="SPOTIFY logo"
@@ -79,23 +61,22 @@ export default function Home() {
           </div>
           
           <h1 
-            className="glitch text-7xl md:text-9xl font-extrabold mb-6 tracking-tight animate-on-scroll"
+            className="glitch text-fluid-hero font-extrabold mb-6 tracking-tight"
             data-text="SPOTIFY"
-            style={{ fontWeight: 800, animationDelay: '100ms' }}
+            style={{ fontWeight: 800 }}
           >
             SPOTIFY
           </h1>
           
           <p 
-            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-on-scroll"
-            style={{ animationDelay: '200ms' }}
+            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Curated vinyl for audiophiles who treat records as art objects.
             <br />
             Every pressing tells a story.<span className="crt-cursor" aria-hidden="true" />
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll" style={{ animationDelay: '300ms' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/shop">
               <Button 
                 size="lg" 
@@ -123,8 +104,7 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={stat.label} 
-                className="text-center animate-on-scroll"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2" style={{ fontWeight: 800 }}>
                   {stat.value}
@@ -145,14 +125,14 @@ export default function Home() {
           aria-hidden="true"
           style={{ fontWeight: 800 }}
         >
-          ALBUM
+          ALBUMS
         </div>
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate-on-scroll">
+          <div className="text-center mb-16">
             <div className="badge-retro mb-6" data-testid="badge-retro-featured">
               New Arrivals
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
+            <h2 className="text-fluid-display font-extrabold mb-4" style={{ fontWeight: 800 }}>
               Featured Arrivals
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -162,18 +142,14 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {featuredRecords.map((record, index) => (
-              <div 
-                key={record.id} 
-                className="animate-on-scroll"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+            {featuredRecords.map((record) => (
+              <div key={record.id}>
                 <RecordCard record={record} />
               </div>
             ))}
           </div>
           
-          <div className="text-center animate-on-scroll">
+          <div className="text-center">
             <Link href="/shop">
               <Button 
                 variant="outline" 
@@ -191,11 +167,11 @@ export default function Home() {
       {/* Why Choose Us */}
       <section ref={featuresRef} className="py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate-on-scroll">
+          <div className="text-center mb-16">
             <div className="badge-retro mb-6" data-testid="badge-retro-difference">
               Why Us
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight" style={{ fontWeight: 800 }}>
+            <h2 className="text-fluid-display font-extrabold mb-4 leading-tight" style={{ fontWeight: 800 }}>
               The SPOTIFY Difference
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -221,11 +197,10 @@ export default function Home() {
                 title: 'Protected Shipping',
                 description: 'Custom-built mailers, double-boxed, with corner protectors. Your vinyl arrives exactly as it left.',
               },
-            ].map((feature, index) => (
+            ].map((feature) => (
               <div 
                 key={feature.title}
-                className="text-center group animate-on-scroll"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="text-center group"
               >
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                   <feature.icon className="w-10 h-10" strokeWidth={1.5} />
@@ -251,7 +226,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
+          <h2 className="text-fluid-display font-extrabold mb-4" style={{ fontWeight: 800 }}>
             Burning Man is Here
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
@@ -271,7 +246,7 @@ export default function Home() {
 
       {/* Newsletter */}
       <section className="py-32 border-t border-border/40">
-        <div className="container mx-auto px-6 max-w-3xl text-center animate-on-scroll">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
             Join the Spot Droppers
           </h2>

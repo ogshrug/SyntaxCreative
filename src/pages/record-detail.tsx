@@ -100,7 +100,7 @@ export default function RecordDetail() {
               </Badge>
               
               <h1 
-                className="text-5xl md:text-6xl font-extrabold mb-3 leading-tight" 
+                className="text-fluid-display font-extrabold mb-3 leading-tight" 
                 style={{ fontWeight: 800 }}
                 data-testid="text-title"
               >

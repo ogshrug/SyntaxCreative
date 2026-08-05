@@ -89,7 +89,7 @@ export default function BurningMan() {
             className="w-[7.5rem] h-[7.5rem] mx-auto mb-6"
           />
           <h1
-            className="text-7xl md:text-9xl font-extrabold mb-6 tracking-tight"
+            className="text-fluid-hero font-extrabold mb-6 tracking-tight"
             style={{ fontWeight: 800 }}
           >
             BURNING MAN
@@ -119,7 +119,7 @@ export default function BurningMan() {
               <Flame className="w-8 h-8" strokeWidth={1.5} />
             </div>
             <h2
-              className="text-5xl md:text-6xl font-extrabold mb-4"
+              className="text-fluid-display font-extrabold mb-4"
               style={{ fontWeight: 800 }}
             >
               Sign Up & Buy Tickets

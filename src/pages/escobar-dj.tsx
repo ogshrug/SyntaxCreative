@@ -9,9 +9,10 @@ import { Footer } from '@/components/Footer';
 import { vinylRecords, type VinylRecord } from '@/data/records';
 
 function pickRandom(currentId?: number): VinylRecord {
-  const pool = currentId
+  const pool = (currentId
     ? vinylRecords.filter((r) => r.id !== currentId)
-    : vinylRecords;
+    : vinylRecords
+  ).filter((r) => !r.exclusive);
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -34,7 +35,7 @@ export default function EscobarDJ() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
             <div className="animate-on-scroll fade-in">
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight" style={{ fontWeight: 800 }}>
+              <h1 className="text-fluid-display font-extrabold mb-6 tracking-tight" style={{ fontWeight: 800 }}>
                 The Escobar DJ
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">

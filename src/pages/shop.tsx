@@ -8,10 +8,11 @@ export default function Shop() {
   const [selectedGenre, setSelectedGenre] = useState<string>('All');
 
   const filteredRecords = useMemo(() => {
+    const available = vinylRecords.filter((record) => !record.exclusive);
     if (selectedGenre === 'All') {
-      return vinylRecords;
+      return available;
     }
-    return vinylRecords.filter((record) => record.genre === selectedGenre);
+    return available.filter((record) => record.genre === selectedGenre);
   }, [selectedGenre]);
 
   return (
@@ -19,7 +20,7 @@ export default function Shop() {
       <div className="container mx-auto px-6 flex-1 w-full pb-20">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4" style={{ fontWeight: 800 }}>
+          <h1 className="text-fluid-display font-extrabold mb-4" style={{ fontWeight: 800 }}>
             The Collection
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">

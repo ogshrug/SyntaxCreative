@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import type { VinylRecord } from '@/data/records';
 import { getFormatPrice, type Format } from '@/data/records';
 
-export type CartItemKind = 'mixtape' | 'ticket';
+export type CartItemKind = 'mixtape' | 'ticket' | 'membership';
 
 interface CartItem {
   record: VinylRecord;

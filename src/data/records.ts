@@ -10,6 +10,7 @@ export interface VinylRecord {
   tracklist: string[];
   coverImage: string;
   description?: string;
+  exclusive?: boolean;
 }
 
 export const vinylRecords: VinylRecord[] = [
@@ -1862,7 +1863,38 @@ export const vinylRecords: VinylRecord[] = [
       '(I Can\'t Get No) Satisfaction',
     ]
   },
+  {
+    id: 77,
+    title: '9 months & 50 hours',
+    artist: 'Fred again.. & LATIN MAFIA',
+    genre: 'Electronic',
+    year: 2026,
+    price: 0,
+    label: 'Atlantic',
+    condition: 'Mint',
+    coverImage: '/albums/9mo50.jpg',
+    description: 'An exclusive members-only mixtape, recorded over two days in Mexico City and live-streamed until it was finished. Free for members only.',
+    exclusive: true,
+    tracklist: [
+      'Hey Hey',
+      'Alvafro',
+      'Bonita',
+      'benjy chord',
+      'Cmon (LATIN MAFIA & Fred edit)',
+      'Quiereme',
+      'casino143 (Rue De La Fortuna Remix)',
+      'Film Scene Soundtrack',
+      'Open Eye Signal (under the fabric)',
+      'Piensas En Mi',
+      'Halo',
+      'Te Estoy Correteando',
+      'Mabe',
+      'I wish it wasnt',
+    ]
+  },
 ];
+
+export const exclusiveRecords = vinylRecords.filter((record) => record.exclusive);
 
 export const genres = ['All', 'Jazz', 'Soul', 'Electronic', 'Hip-Hop', 'Rock', 'Ambient'] as const;
 
@@ -1871,6 +1903,7 @@ export type Format = 'Vinyl' | 'CD' | 'Cassette';
 export const formatOptions: Format[] = ['Vinyl', 'CD', 'Cassette'];
 
 export function getFormatPrice(record: VinylRecord, format: Format): number {
+  if (record.exclusive) return 0;
   switch (format) {
     case 'CD':
       return 15;

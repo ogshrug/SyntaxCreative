@@ -75,7 +75,7 @@ export default function Mixtape() {
     return (
       <div className="min-h-screen pt-32 flex flex-col">
         <div className="container mx-auto px-6 max-w-4xl flex-1 w-full pb-20">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-8" style={{ fontWeight: 800 }}>
+          <h1 className="text-fluid-display font-extrabold mb-8" style={{ fontWeight: 800 }}>
             Your Mixtape
           </h1>
 
@@ -106,7 +106,7 @@ export default function Mixtape() {
     <div className="min-h-screen pt-32 flex flex-col">
       <div className="container mx-auto px-6 max-w-6xl flex-1 w-full pb-20">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-5xl md:text-6xl font-extrabold" style={{ fontWeight: 800 }}>
+          <h1 className="text-fluid-display font-extrabold" style={{ fontWeight: 800 }}>
             Your Mixtape
           </h1>
           <Button

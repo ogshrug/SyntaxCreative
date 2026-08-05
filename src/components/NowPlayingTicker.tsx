@@ -1,7 +1,9 @@
 import { vinylRecords } from '@/data/records';
 
 export function NowPlayingTicker() {
-  const items = vinylRecords.map((record) => `${record.title} — ${record.artist}`);
+  const items = vinylRecords
+    .filter((record) => !record.exclusive)
+    .map((record) => `${record.title} — ${record.artist}`);
   const line = ['NOW PLAYING', ...items].join('  •  ');
   const copy = `${line}  •  `;
 
