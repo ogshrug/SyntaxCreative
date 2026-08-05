@@ -24,7 +24,7 @@ export function CRTLoadingScreen({ onDone }: { onDone: () => void }) {
       <div className="absolute inset-0 crt-scanlines pointer-events-none" />
       <div className="absolute inset-0 crt-sweep pointer-events-none" />
 
-      <div className="relative z-10 text-center px-6 crt-flicker">
+      <div className="relative z-10 text-center px-6">
         <img src="/logo1.svg" alt="" className="w-24 h-24 mx-auto mb-8" />
         <h1
           className="crt-text text-6xl md:text-8xl font-extrabold tracking-tight mb-10"

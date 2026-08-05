@@ -145,7 +145,7 @@ export default function Home() {
           aria-hidden="true"
           style={{ fontWeight: 800 }}
         >
-          VINYL
+          ALBUM
         </div>
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">

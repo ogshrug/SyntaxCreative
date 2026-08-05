@@ -471,26 +471,6 @@
     }
   }
 
-  .crt-flicker {
-    animation: crtFlicker 0.22s steps(2, end) infinite;
-  }
-
-  @keyframes crtFlicker {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    15% {
-      opacity: 0.86;
-    }
-    55% {
-      opacity: 0.94;
-    }
-    75% {
-      opacity: 0.9;
-    }
-  }
-
   .crt-sweep {
     background: linear-gradient(
       to bottom,
@@ -584,20 +564,6 @@
     );
   }
 
-  .crt-filter-flicker {
-    animation: crtFilterFlicker 0.18s steps(2, end) infinite;
-  }
-
-  @keyframes crtFilterFlicker {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.97;
-    }
-  }
-
   .crt-filter-sweep {
     position: absolute;
     inset: 0;
@@ -649,35 +615,6 @@
     inset: 0;
     background-image: radial-gradient(rgba(0, 0, 0, 0.14) 1px, transparent 1px);
     background-size: 4px 4px;
-  }
-
-  /* ---- CRT filter VHS static noise ---- */
-  .crt-filter-noise {
-    position: absolute;
-    inset: -32px;
-    opacity: 0.06;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 256px 256px;
-    mix-blend-mode: overlay;
-    animation: crtNoise 0.4s steps(4, end) infinite;
-  }
-
-  @keyframes crtNoise {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(-8px, 4px);
-    }
-    50% {
-      transform: translate(6px, -6px);
-    }
-    75% {
-      transform: translate(-4px, 8px);
-    }
-    100% {
-      transform: translate(8px, -2px);
-    }
   }
 
   /* ---- Blinking cursor ---- */
@@ -779,14 +716,6 @@
     will-change: transform;
   }
 
-  .marquee-track {
-    display: inline-flex;
-    align-items: center;
-    gap: 3rem;
-    padding-right: 3rem;
-    animation: marqueeScroll 160s linear infinite;
-    will-change: transform;
-  }
 
   @keyframes marqueeScroll {
     from {
@@ -867,7 +796,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     .marquee-track,
-    .crt-filter-noise,
     .crt-cursor,
     .glitch:hover::before,
     .glitch:hover::after {

@@ -3,7 +3,7 @@ export function CrtFilter({ enabled }: { enabled: boolean }) {
 
   return (
     <div
-      className="crt-filter crt-filter-flicker"
+      className="crt-filter"
       data-testid="crt-filter"
       aria-hidden="true"
     >
@@ -12,7 +12,6 @@ export function CrtFilter({ enabled }: { enabled: boolean }) {
       <div className="crt-filter-tint" />
       <div className="crt-filter-dotmask" />
       <div className="crt-filter-sweep" />
-      <div className="crt-filter-noise" />
     </div>
   );
 }
