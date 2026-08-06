@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { href: '/shop', label: 'Shop', testId: 'link-shop' },
   { href: '/escobar-dj', label: 'Escobar DJ', testId: 'link-escobar-dj' },
   { href: '/mixtape', label: 'Mixtape', testId: 'link-mixtape' },
-  { href: '/burning-man', label: 'Burning Man', testId: 'link-burning-man' },
+  { href: '/events', label: 'Events', testId: 'link-events' },
 ];
 
 export function Header({

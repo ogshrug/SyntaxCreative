@@ -166,7 +166,7 @@ export default function Cart() {
               const detailHref = isMixtape
                 ? '/mixtape'
                 : isTicket
-                  ? '/burning-man'
+                  ? item.record.label === 'Thunder' ? '/thunder' : '/burning-man'
                   : isMembership
                     ? '/membership'
                     : `/record/${item.record.id}`;

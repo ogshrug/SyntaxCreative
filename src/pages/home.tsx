@@ -37,7 +37,7 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         ref={heroRef}
-        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[100vh] pt-[160px] flex items-center justify-center overflow-hidden"
       >
         {/* Background image */}
         <div className="absolute inset-0 z-0">
@@ -215,7 +215,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Burning Man CTA */}
+      {/* Events CTA */}
       <section className="py-32 border-y border-border/40 bg-card/30 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -227,18 +227,18 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h2 className="text-fluid-display font-extrabold mb-4" style={{ fontWeight: 800 }}>
-            Burning Man is Here
+            Events Are Here
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-            The playa is calling. Secure your spot at this year's burn and start planning your journey.
+            Feel the boom of THUNDER or answer the call of the playa. Pick your event and start planning.
           </p>
-          <Link href="/burning-man">
+          <Link href="/events">
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base px-8 py-6 rounded-sm"
-              data-testid="button-burning-man-signup"
+              data-testid="button-events-link"
             >
-              Sign Up Now!!
+              Explore Events
             </Button>
           </Link>
         </div>

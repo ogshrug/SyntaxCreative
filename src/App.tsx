@@ -10,6 +10,8 @@ import Cart from '@/pages/cart';
 import Mixtape from '@/pages/mixtape';
 import Membership from '@/pages/membership';
 import BurningMan from '@/pages/burning-man';
+import Events from '@/pages/events';
+import Thunder from '@/pages/thunder';
 import EscobarDJ from '@/pages/escobar-dj';
 import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { useEffect, useState } from 'react';
@@ -49,7 +51,9 @@ function Router({
         <Route path="/cart" component={Cart} />
         <Route path="/membership" component={Membership} />
         <Route path="/mixtape" component={Mixtape} />
+        <Route path="/events" component={Events} />
         <Route path="/burning-man" component={BurningMan} />
+        <Route path="/thunder" component={Thunder} />
         <Route path="/escobar-dj" component={EscobarDJ} />
         <Route component={NotFound} />
       </Switch>
